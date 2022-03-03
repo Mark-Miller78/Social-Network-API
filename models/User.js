@@ -12,6 +12,7 @@ const userSchema = new Schema(
             type: String,
             Required: 'Please enter a valid email address!',
             unique: true,
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email address!']
         },
         thoughts:[thoughtSchema],
         friends:[userSchema],
