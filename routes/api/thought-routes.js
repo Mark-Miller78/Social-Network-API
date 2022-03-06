@@ -4,7 +4,9 @@ const{
     getThoughtById,
     createNewThought,
     updateThought,
-    deleteThought}=require('../../controllers/thought-controller');
+    deleteThought,
+    addReaction,
+    deleteReaction}=require('../../controllers/thought-controller');
 
 router
     .route('/')
@@ -23,5 +25,12 @@ router
     .route('/:thoughtId/:userId')
     .delete(deleteThought);
 
-    
+router
+    .route('/:thoughtId/reactions')
+    .post(addReaction)
+
+router
+    .route('/:thoughtId/reactions/:reactionId')
+    .delete(deleteReaction);
+
 module.exports = router;
