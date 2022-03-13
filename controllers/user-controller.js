@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const {User, Thought} = require('../models');
 
 const userController={
     //get all users
@@ -63,9 +63,9 @@ const userController={
                 if(!dbUserData){
                     res.status(404).json({message: 'No user found with that id!'});
                     return;
-                }
+                }           
                 res.json(dbUserData);
-            })
+            })         
             .catch(err =>{
                 console.log(err);
                 res.status(400).json(err);
@@ -76,7 +76,7 @@ const userController={
         User.findOneAndUpdate(
             {_id: params.userId},
             {$push: {friends: params.friendId}},
-            {new: true}
+            {new: true, runValidators:true}
         )
         .then(dbUserData => {
             if(!dbUserData){
